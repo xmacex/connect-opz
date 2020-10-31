@@ -1,18 +1,20 @@
-# Connect-opz
+# Connect OP-Z
 
 Connect OP-Z as an audio device on norns.
 
 This norns program has a single purpose, namely to connect monone
 norns to teenage engineering OP-Z audio over USB.
 
+I hope to improve my setup in the following regards:
+
+1. Audio signal from OP-Z headphones to norns input is weak and loses in quality when driving OP-Z at full volume. USB audio has more *umph*
+1. OP-Z reserves the audio in of norns.
+1. Less is more.
+
 WARNING: Do not disconnect or turn off the OP-Z when it has been
 connected as an audio device with this program. This will leave
 processes running wild on the norns, and will produce loud digital
 noise.
-
-There seems to be audio glitch artifacts. Someone please help be get
-rid of them maybe by tuning `alsa_in` and `alsa_out`. Or alternatively
-put a reverb on them ;)
 
 # Purpose
 
@@ -60,4 +62,5 @@ which is defined in file `/etc/systemd/system/norns-jack.service`.
 It might be worth looking at alternatives to `alsa_in` and `alsa_out`,
 Jack 2 might have something for this.
 
-Last idea would be to get a hardware mixer.
+Last idea would be to get a hardware mixer, rather then user norns as
+my mixer.
