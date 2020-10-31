@@ -16,6 +16,13 @@ connected as an audio device with this program. This will leave
 processes running wild on the norns, and will produce loud digital
 noise.
 
+https://llllllll.co/t/using-usb-audio-with-norns-case-op-z/
+
+# Requirements
+
+* norns
+* teenage engineering OP-Z
+
 # Purpose
 
 The following storyline illustrates the ambition, and success of this
