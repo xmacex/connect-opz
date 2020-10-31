@@ -15,20 +15,20 @@ Raspberry Pi 3+ powered by a battery pack. Etymōtic ER2XR headphones
 are connected to norns output, and OP-Z is connected both with a USB
 cable for MIDI and with an audio cable for audio from OP-Z to norns.
 
-![](lib/original-setup-greyscale.jpg)
+![](doc/original-setup-greyscale.jpg)
 
 In a simplified setup the USB cable which I'll use anyway also
 transport audio both ways, removing the audio cable from the setup and
 also adding sound from norns to OP-Z.
 
-![](lib/simplified-setup-greyscale.jpg)
+![](doc/simplified-setup-greyscale.jpg)
 
 An extended setup, now that the norns audio input is free for using
 with a PO-28 Robot, PO-16 Factory or smartphone running YouTube,
 SoundCloud, browser, Spotify, software synths like nanoloop and
 Caustic, messaging apps etc. fun sound sources.
 
-![](extended-setup-greyscale.jpg)
+![](doc/extended-setup-greyscale.jpg)
 
 # Function
 
