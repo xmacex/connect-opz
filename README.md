@@ -44,7 +44,7 @@ Caustic, messaging apps etc. fun sound sources.
 # Function
 
 The way this program works is that is runs `alsa_in` and `alsa_out`
-for the connected OP-Z, and routes them *softcut*` and *crone* in
+for the connected OP-Z, and routes them *softcut* and *crone* in
 jack. This manipulates the audio stack under norns, which remains
 ignorant of these changes.
 
