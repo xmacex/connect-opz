@@ -5,6 +5,15 @@ Connect OP-Z as an audio device on norns.
 This norns program has a single purpose, namely to connect monone
 norns to teenage engineering OP-Z audio over USB.
 
+WARNING: Do not disconnect or turn off the OP-Z when it has been
+connected as an audio device with this program. This will leave
+processes running wild on the norns, and will produce loud digital
+noise.
+
+There seems to be audio glitch artifacts. Someone please help be get
+rid of them maybe by tuning `alsa_in` and `alsa_out`. Or alternatively
+put a reverb on them ;)
+
 # Purpose
 
 The following storyline illustrates the ambition, and success of this
