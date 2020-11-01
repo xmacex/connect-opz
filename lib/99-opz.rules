@@ -1,0 +1,6 @@
+# An udev rule to run when OP-Z is connected or disconnected.
+#
+# This would go in /etc/udev/rules.d/
+
+# ACTION=="add", SUBSYSTEM=="usb", ATTRS{idVendor}=="2367", ATTRS{idProduct}=="000c", RUN=="/usr/bin/sudo systemctl start norns-opz-audio"
+# ACTION=="remove", SUBSYSTEM=="usb", ATTRS{idVendor}=="2367", ATTRS{idProduct}=="000c", RUN+="/usr/bin/sudo systemctl stop norns-opz-audio"

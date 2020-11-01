@@ -1,0 +1,19 @@
+# A systemd service for OP-Z.
+#
+# This would go in /etc/systemd/system/
+
+[Unit]
+After=sound.target
+
+[Service]
+Type=simple
+User=we
+Group=we
+LimitRTPRIO=95
+LimitMEMLOCK=infinity
+ExecStart=/home/we/dust/code/xmacex/connect-opz/lib/connect-opz.sh
+ExecStop=/home/we/dust/code/xmacex/connect-opz/lib/disconnect-opz.sh
+RemainAfterExit=True
+
+# [Install]
+# WantedBy=norns.target

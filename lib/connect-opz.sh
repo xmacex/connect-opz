@@ -2,6 +2,9 @@
 # arecord -l and aplay -l lists ALSA input and output devices.
 # jack_lsp lists Jack devices, connections with -c.
 
+# Wait for device initialization. There must be a better way.
+sleep 2
+
 # Start alsa_in and alsa_out.
 alsa_in -d hw:1 -r 44100 &
 alsa_out -d hw:1 -r 44100 &
