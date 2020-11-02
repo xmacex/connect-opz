@@ -7,7 +7,18 @@
 opz_connected = nil
 opz_setup = nil
 
+t = 0
+
 function init()
+  opz_connected = opz_is_connected()
+  opz_setup = opz_audio_is_setup()
+  counter = metro.init(tick, 0.2, -1)
+  counter:start()
+  redraw()
+end
+
+function tick(tock)
+  t = tock
   opz_connected = opz_is_connected()
   opz_setup = opz_audio_is_setup()
   redraw()
@@ -76,23 +87,39 @@ function draw_dancing_music()
 end
 
 function draw_status_graphics()
-  for i=0,3 do
-    screen.level(4)
-    screen.circle(20 + 15*i, 10, 7)
+  local x_pos = 60
+  local dial_r = 5
+  for i=1,4 do
+    -- dial edges
+    screen.level(1 + 3*bool_to_number(opz_connected))
+    screen.circle(x_pos + 15*i, 10, dial_r + 2)
     screen.stroke()
     
+    -- dial discs
     screen.level(1 + 15*bool_to_number(opz_setup))
-    screen.circle(20 + 15*i, 10, 5)
+    screen.circle(x_pos + 15*i, 10, dial_r)
     screen.fill()
     
+    -- dial centres
     screen.level(0)
-    screen.circle(20 + 15*i, 10, 2)
+    screen.circle(x_pos + 15*i, 10, dial_r - 3)
     screen.fill()
     
-    -- screen.level(5)
-    screen.move(16 + 15*i, 7)
-    screen.line_rel(9, 7)
-    screen.stroke()
+    -- dial lines
+    if opz_setup then
+      screen.move(x_pos + 15*i, 10)
+      screen.move_rel((-math.cos(t/i%10) * dial_r), -math.sin(t/i%10) * dial_r)
+      screen.line(x_pos + 15*i, 10)
+      screen.move_rel(math.cos(t/i%10) * dial_r, math.sin(t/i%10) * dial_r)
+      screen.line(x_pos + 15*i, 10)
+      screen.stroke()
+    else
+      -- screen.level(0)
+      screen.move(x_pos + 15*i, 10)
+      screen.move_rel(-dial_r, 0)
+      screen.line_rel(dial_r * 2, 0)
+      screen.stroke()
+    end
   end
 end
 
