@@ -51,16 +51,16 @@ function toggle_audio_setup()
   if opz_is_connected() then
     if not opz_audio_is_setup() then
       print("Setting up audio")
-      os.execute('/home/we/dust/code/xmacex/connect-opz/lib/connect-opz.sh') -- wow hardcoded path
+      os.execute(_path.this.lib..'connect-opz.sh')
     else
       print("Tearing down audio setup")
-      os.execute('/home/we/dust/code/xmacex/connect-opz/lib/disconnect-opz.sh')
+      os.execute(_path.this.lib..'disconnect-opz.sh')
     end
   else
     print("It's not connected")
     opz_connected = false
     -- just to maintain sane state.
-    os.execute('/home/we/dust/code/xmacex/connect-opz/lib/connect-opz.sh')
+    os.execute(_path.this.lib..'connect-opz.sh')
   end
   opz_setup = opz_audio_is_setup()
 end
