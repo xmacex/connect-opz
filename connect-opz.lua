@@ -2,7 +2,6 @@
 -- device.
 --
 -- K2 to toggle OP-Z.
--- K3 to update status.
 
 opz_connected = nil
 opz_setup = nil
@@ -12,7 +11,7 @@ t = 0
 function init()
   opz_connected = opz_is_connected()
   opz_setup = opz_audio_is_setup()
-  counter = metro.init(tick, 0.2, -1)
+  counter = metro.init(tick, 1, -1)
   counter:start()
   redraw()
 end
@@ -42,8 +41,6 @@ function key(n, z)
   if n == 2 and z == 1 then
     print("Toggling")
     toggle_audio_setup()
-  else
-    print("Updating")
   end
   redraw()
 end
