@@ -1,8 +1,10 @@
--- Toggle OP-Z as audio
--- device.
+-- Toggle OP-Z as USB
+-- audio device on norns.
 --
--- K2 toggle input.
--- K3 toggle outout.
+--
+--
+-- K2: toggle input from OP-Z.
+-- K3: toggle output to OP-Z.
 
 opz_connected = nil
 opz_input = nil
@@ -102,11 +104,11 @@ function toggle_audio_output()
     -- just to maintain sane state.
     os.execute(_path.this.lib..'connect-opz-output.sh')
   end
-  opz_input = opz_output_is_setup()
+  opz_output = opz_output_is_setup()
 end
 
 function draw_dancing_music()
-  for i=0,2 do
+  for i=0,bool_to_number(opz_input)+bool_to_number(opz_output) do
     screen.move(math.random(0, 124), math.random(0, 60))
     screen.font_size(math.random(5, 20))
     screen.level(1)
@@ -125,7 +127,7 @@ function draw_status_graphics()
     screen.stroke()
     
     -- dial discs
-    screen.level(1 + 14*bool_to_number(opz_setup))
+    screen.level(1 + 6*bool_to_number(opz_input) + 6*bool_to_number(opz_output))
     screen.circle(x_pos + 15*i, 10, dial_r)
     screen.fill()
     
@@ -135,7 +137,7 @@ function draw_status_graphics()
     screen.fill()
     
     -- dial lines
-    if opz_setup then
+    if opz_input or opz_output then
       screen.move(x_pos + 15*i, 10)
       screen.move_rel((-math.cos(t/i%10) * dial_r), -math.sin(t/i%10) * dial_r)
       screen.line(x_pos + 15*i, 10)
