@@ -93,7 +93,7 @@ function draw_status_graphics()
     screen.stroke()
     
     -- dial discs
-    screen.level(1 + 15*bool_to_number(opz_setup))
+    screen.level(1 + 14*bool_to_number(opz_setup))
     screen.circle(x_pos + 15*i, 10, dial_r)
     screen.fill()
     
@@ -111,7 +111,6 @@ function draw_status_graphics()
       screen.line(x_pos + 15*i, 10)
       screen.stroke()
     else
-      -- screen.level(0)
       screen.move(x_pos + 15*i, 10)
       screen.move_rel(-dial_r, 0)
       screen.line_rel(dial_r * 2, 0)
