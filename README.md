@@ -3,12 +3,13 @@
 Connect OP-Z as an audio device on norns.
 
 This norns program has a single purpose, namely to connect monone
-norns to teenage engineering OP-Z audio over USB.
+norns to teenage engineering OP-Z audio over USB for both input and
+output.
 
 I hope to improve my setup in the following regards:
 
 1. Audio signal from OP-Z headphones to norns input is weak and loses in quality when driving OP-Z at full volume. USB audio has more *umph*
-1. OP-Z reserves the audio in of norns.
+1. OP-Z reserves the audio in jack of norns shield.
 1. Less is more.
 
 WARNING: Do not disconnect or turn off the OP-Z when it has been
@@ -54,6 +55,9 @@ The way this program works is that is runs `alsa_in` and `alsa_out`
 for the connected OP-Z, and routes them *softcut* and *crone* in
 jack. This manipulates the audio stack under norns, which remains
 ignorant of these changes.
+
+Enabling input from OP-Z to norns and output from norns to OP-Z are
+controlled separately.
 
 # Further ideas
 
