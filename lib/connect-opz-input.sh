@@ -2,11 +2,10 @@
 # arecord -l and aplay -l lists ALSA input and output devices.
 # jack_lsp lists Jack devices, connections with -c.
 
-# Start alsa_in and alsa_out.
+# Start alsa_in.
 alsa_in -d hw:1 -r 44100 &
-alsa_out -d hw:1 -r 44100 &
 
-# Wait for alsa_in and alsa_out to come up.
+# Wait for alsa_in to come up.
 sleep 1
 
 # Connect softcut.

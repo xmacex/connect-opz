@@ -1,16 +1,19 @@
 -- Toggle OP-Z as audio
 -- device.
 --
--- K2 to toggle OP-Z.
+-- K2 toggle input.
+-- K3 toggle outout.
 
 opz_connected = nil
-opz_setup = nil
+opz_input = nil
+opz_output = nil
 
 t = 0
 
 function init()
   opz_connected = opz_is_connected()
-  opz_setup = opz_audio_is_setup()
+  opz_input = opz_input_is_setup()
+  opz_output = opz_output_is_setup()
   counter = metro.init(tick, 1, -1)
   counter:start()
   redraw()
@@ -19,14 +22,15 @@ end
 function tick(tock)
   t = tock
   opz_connected = opz_is_connected()
-  opz_setup = opz_audio_is_setup()
+  opz_input = opz_input_is_setup()
+  opz_output = opz_output_is_setup()
   redraw()
 end
 
 function redraw()
   screen.clear()
 
-  if opz_connected and opz_setup then draw_dancing_music() end
+  if opz_connected and (opz_input or opz_output) then draw_dancing_music() end
   draw_status_graphics()
   draw_status_text()
 
@@ -36,11 +40,16 @@ end
 
 function key(n, z)
   opz_connected = opz_is_connected()
-  opz_setup = opz_audio_is_setup()
+  opz_input = opz_input_is_setup()
+  opz_output = opz_output_is_setup()
   
   if n == 2 and z == 1 then
-    print("Toggling")
-    toggle_audio_setup()
+    print("Toggling input")
+    toggle_audio_input()
+  end
+  if n == 3 and z == 1 then
+    print("Toggling output")
+    toggle_audio_output()
   end
   redraw()
 end
@@ -50,27 +59,50 @@ function opz_is_connected()
   return opz_connected
 end
 
-function opz_audio_is_setup()
+function opz_input_is_setup()
    opz_setup = os.execute('pidof alsa_in') or false
    return opz_setup
 end
 
-function toggle_audio_setup()
+function opz_output_is_setup()
+   opz_output = os.execute('pidof alsa_out') or false
+   return opz_output
+end
+
+function toggle_audio_input()
   if opz_is_connected() then
-    if not opz_audio_is_setup() then
-      print("Setting up audio")
-      os.execute(_path.this.lib..'connect-opz.sh')
+    if not opz_input_is_setup() then
+      print("Setting up audio input")
+      os.execute(_path.this.lib..'connect-opz-input.sh')
     else
-      print("Tearing down audio setup")
-      os.execute(_path.this.lib..'disconnect-opz.sh')
+      print("Tearing down audio input")
+      os.execute(_path.this.lib..'disconnect-opz-input.sh')
     end
   else
     print("It's not connected")
     opz_connected = false
     -- just to maintain sane state.
-    os.execute(_path.this.lib..'connect-opz.sh')
+    os.execute(_path.this.lib..'connect-opz-input.sh')
   end
-  opz_setup = opz_audio_is_setup()
+  opz_input = opz_input_is_setup()
+end
+
+function toggle_audio_output()
+  if opz_is_connected() then
+    if not opz_output_is_setup() then
+      print("Setting up audio output")
+      os.execute(_path.this.lib..'connect-opz-output.sh')
+    else
+      print("Tearing down audio output")
+      os.execute(_path.this.lib..'disconnect-opz-output.sh')
+    end
+  else
+    print("It's not connected")
+    opz_connected = false
+    -- just to maintain sane state.
+    os.execute(_path.this.lib..'connect-opz-output.sh')
+  end
+  opz_input = opz_output_is_setup()
 end
 
 function draw_dancing_music()
@@ -126,9 +158,13 @@ function draw_status_text()
   screen.text_right("connected:")
   screen.text(tostring(opz_connected))
   
-  screen.move(55, 47)
-  screen.text_right("audio setup:")
-  screen.text(tostring(opz_setup))
+  screen.move(55, 40 + 7)
+  screen.text_right("audio input:")
+  screen.text(tostring(opz_input))
+
+  screen.move(55, 40 + 7*2)
+  screen.text_right("audio output:")
+  screen.text(tostring(opz_output))
 end
 
 function bool_to_number(value)
