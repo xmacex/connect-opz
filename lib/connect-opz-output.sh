@@ -3,7 +3,7 @@
 # jack_lsp lists Jack devices, connections with -c.
 
 # Start and alsa_out.
-alsa_out -d hw:1 -r 44100 &
+alsa_out -d hw:CARD=OPZ -r 44100 &
 
 # Wait for alsa_out to come up.
 sleep 1
