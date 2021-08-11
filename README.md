@@ -59,16 +59,20 @@ ignorant of these changes.
 Enabling input from OP-Z to norns and output from norns to OP-Z are
 controlled separately.
 
+# Plug-and-play
+
+This thing can autodetect a connected OP-Z. To enable this feature
+
+1. Symlink `99-opz.rules` into `/etc/udev/rules.d/`.
+1. Register the rule with`sudo udevadm control --reload && sudo udevadm trigger` or restart norns.
+1. Symlink `opz-audio-input.service` in `~/.config/systemd/user/`.
+1. Register the service with `systemctl --user daemon-reload`.
+
+There will be an audible glitch when the OP-Z is disconnected. Protect your hearing by turning down the volume.
+
+If the disconnection fails and norns goes to a wild state, restart it.
+
 # Further ideas
-
-It would make sense to do this at system level rather than a norns
-program. This would be done by adding *udev* rule in
-`/etc/udev/rules.d` plus writing a program which starts `alsa_in` and
-`alsa_out` when the OP-Z is plugged in and adds the jack routes, and
-tears this setup down when the OP-Z is disconnected from USB.
-
-Another idea would be to amend the norns *systemd* service norns-jackd
-which is defined in file `/etc/systemd/system/norns-jack.service`.
 
 It might be worth looking at alternatives to `alsa_in` and `alsa_out`,
 Jack 2 might have something for this.
