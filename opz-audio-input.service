@@ -1,9 +1,9 @@
 [Unit]
 Description=USB Audio from OP-Z
-BindsTo=dev-snd-pcmC1D0c.device
-After=dev-snd-pcmC1D0c.device
-# BindsTo=dev-snd-by-id-usb-teenage_engineering_ab_OP-Z_X3CLATZZ-00.device
-# After=dev-snd-by-id-usb-teenage_engineering_ab_OP-Z_X3CLATZZ-00.device
+#BindsTo=dev-snd-pcmC1D0c.device
+#After=dev-snd-pcmC1D0c.device
+BindsTo=dev-snd-OP-Z.device
+After=dev-snd-OP-Z.device
 Wants=norns-jack.service
 
 [Service]

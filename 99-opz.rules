@@ -4,4 +4,4 @@
 
 # KERNEL=="pcmC1D0c", ACTION=="add", ATTRS{idVendor}=="2367", ATTRS{idProduct}=="000c", TAG+="systemd", ENV{SYSTEMD_WANTS}+="opz-audio-input.service"
 
-ACTION=="add", ATTRS{manufacturer}=="teenage engineering ab", ATTRS{product}=="OP-Z", TAG+="systemd", ENV{SYSTEMD_WANTS}+="opz-audio-input.service"
+ACTION=="add", ATTRS{manufacturer}=="teenage engineering ab", ATTRS{product}=="OP-Z", TAG+="systemd", SYMLINK+="snd/$attr{product}", ENV{SYSTEMD_WANTS}+="opz-audio-input.service"
