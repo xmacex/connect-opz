@@ -2,8 +2,8 @@
 Description=USB Audio from OP-Z
 #BindsTo=dev-snd-pcmC1D0c.device
 #After=dev-snd-pcmC1D0c.device
-BindsTo=dev-snd-OP-Z.device
-After=dev-snd-OP-Z.device
+BindsTo=dev-snd-OP\x2dZ.device
+After=dev-snd-OP\x2dZ.device
 Wants=norns-jack.service
 
 [Service]
