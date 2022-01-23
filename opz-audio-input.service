@@ -1,10 +1,14 @@
 [Unit]
-Description=USB Audio for OP-Z
-BindsTo=dev-snd-pcmC1D0c.device                                                       
+Description=USB Audio from OP-Z
+BindsTo=dev-snd-pcmC1D0c.device
+After=dev-snd-pcmC1D0c.device
+# BindsTo=dev-snd-by-id-usb-teenage_engineering_ab_OP-Z_X3CLATZZ-00.device
+# After=dev-snd-by-id-usb-teenage_engineering_ab_OP-Z_X3CLATZZ-00.device
 Wants=norns-jack.service
 
 [Service]
 Type=forking
+User=we
 ExecStart=/home/we/dust/code/connect-opz/lib/connect-opz-input.sh
 # StopWhenUnneeded=true
 ExecStop=/home/we/dust/code/connect-opz/lib/disconnect-opz-input.sh

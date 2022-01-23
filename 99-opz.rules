@@ -2,4 +2,6 @@
 #
 # ACTION=="remove", SUBSYSTEM=="usb", ATTRS{idVendor}=="2367", ATTRS{idProduct}=="000c", RUN+="/usr/bin/sudo systemctl stop norns-opz-audio"
 
-KERNEL=="pcmC1D0c", ACTION=="add", ATTRS{idVendor}=="2367", ATTRS{idProduct}=="000c", TAG+="systemd", ENV{SYSTEMD_USER_WANTS}+="opz-audio-input.service"
+# KERNEL=="pcmC1D0c", ACTION=="add", ATTRS{idVendor}=="2367", ATTRS{idProduct}=="000c", TAG+="systemd", ENV{SYSTEMD_WANTS}+="opz-audio-input.service"
+
+ACTION=="add", ATTRS{manufacturer}=="teenage engineering ab", ATTRS{product}=="OP-Z", TAG+="systemd", ENV{SYSTEMD_WANTS}+="opz-audio-input.service"
