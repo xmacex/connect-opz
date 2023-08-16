@@ -1,0 +1,1 @@
+ACTION=="add", ATTRS{manufacturer}=="ZOOM Corporation", ATTRS{product}=="H4", TAG+="systemd", SYMLINK+="snd/$attr{product}", ENV{SYSTEMD_WANTS}+="h4npro-audio-input.service"

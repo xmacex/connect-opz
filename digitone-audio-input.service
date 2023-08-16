@@ -1,0 +1,12 @@
+[Unit]
+Description=USB Audio from Digitone
+BindsTo=dev-snd-Elektron_Digitone.device
+After=dev-snd-Elektron_Digitone.device
+Wants=norns-jack.service
+
+[Service]
+Type=forking
+User=we
+ExecStart=/home/we/dust/code/connect-opz/lib/connect-digitone-input.sh
+# StopWhenUnneeded=true
+ExecStop=/home/we/dust/code/connect-opz/lib/disconnect-digitone-input.sh

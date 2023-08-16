@@ -1,0 +1,14 @@
+[Unit]
+Description=USB Audio from H4n Pro
+#BindsTo=dev-snd-pcmC1D0c.device
+#After=dev-snd-pcmC1D0c.device
+BindsTo=dev-snd-H4.device
+After=dev-snd-H4.device
+Wants=norns-jack.service
+
+[Service]
+Type=forking
+User=we
+ExecStart=/home/we/dust/code/connect-opz/lib/connect-h4npro-input.sh
+# StopWhenUnneeded=true
+ExecStop=/home/we/dust/code/connect-opz/lib/disconnect-h4npro-input.sh

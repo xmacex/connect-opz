@@ -1,0 +1,1 @@
+ACTION=="add", ATTRS{manufacturer}=="Roland", ATTRS{product}=="Boutique", TAG+="systemd", SYMLINK+="snd/$attr{product}", ENV{SYSTEMD_WANTS}+="jd08-audio-input.service"

@@ -1,0 +1,12 @@
+[Unit]
+Description=USB Audio from JD-08
+BindsTo=dev-snd-Boutique.device
+After=dev-snd-Boutique.device
+Wants=norns-jack.service
+
+[Service]
+Type=forking
+User=we
+ExecStart=/home/we/dust/code/connect-opz/lib/connect-jd08-input.sh
+# StopWhenUnneeded=true
+ExecStop=/home/we/dust/code/connect-opz/lib/disconnect-jd08-input.sh
