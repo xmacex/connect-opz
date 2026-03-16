@@ -12,3 +12,5 @@ User=we
 ExecStart=/home/we/dust/code/connect-opz/lib/connect-opz-input.sh
 # StopWhenUnneeded=true
 ExecStop=/home/we/dust/code/connect-opz/lib/disconnect-opz-input.sh
+Restart=always
+RestartSec=3
