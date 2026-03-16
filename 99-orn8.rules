@@ -1,0 +1,1 @@
+ACTION=="add", ATTRS{manufacturer}=="Teensyduino", ATTRS{product}=="PewPewMIDI", TAG+="systemd", SYMLINK+="snd/$attr{product}", ENV{SYSTEMD_WANTS}+="orn8-audio-input.service"

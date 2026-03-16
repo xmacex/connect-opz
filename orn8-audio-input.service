@@ -1,0 +1,14 @@
+[Unit]
+Description=USB Audio from O.R.N.8
+#BindsTo=dev-snd-pcmC1D0c.device
+#After=dev-snd-pcmC1D0c.device
+BindsTo=dev-snd-PewPewMIDI.device
+After=dev-snd-PewPewMIDI.device
+Wants=norns-jack.service
+
+[Service]
+Type=forking
+User=we
+ExecStart=/home/we/dust/code/connect-opz/lib/connect-orn8-input.sh
+# StopWhenUnneeded=true
+ExecStop=/home/we/dust/code/connect-opz/lib/disconnect-orn8-input.sh
