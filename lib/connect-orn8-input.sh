@@ -3,7 +3,7 @@
 # jack_lsp lists Jack devices, connections with -c.
 
 # Start alsa_in.
-alsa_in -d hw:CARD=PewPewMIDI -j orn8 &
+alsa_in -d hw:CARD=Phazerville -j orn8 &
 
 # Wait for alsa_in to come up.
 sleep 1
